@@ -6,18 +6,22 @@ const productSchema = new mongoose.Schema({
     unique: true,
     default: null,
   },
-  pdata: {
+  pdate: {
     type: Date,
     default: new Date(),
   },
-  pimg: {
-    type: Blob,
-    default: null,
-  },
+  // pimg: {
+  //   type: String,
+  //   default: null,
+  // },
   pmanu: {
     type: String,
     default: null,
   },
+  role: {
+    type: Number,
+    default: null,
+  },
 });
 
-module.exports = mongoose.model("ProductSchema", productSchema);
+module.exports = mongoose.model("Products", productSchema);
