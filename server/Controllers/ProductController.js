@@ -1,16 +1,16 @@
-const Prodcut = require("../Models/ProductModel");
+const Product = require("../Models/Product");
 module.exports.insertPro = async (req, res, next) => {
   try {
-    const { pname, pmanu, pdate, role } = req.body;
-    console.log(req.body);
-    // if (!pname || !pmanu || !pdate || !role) {
-    //   return res.json({ message: "All fields are required" });
-    // }
-    // const existingUser = await User.findOne({ pname });
-    // if (existingUser) {
-    //   return res.json({ message: "Product already exists" });
-    // }
-    const user = await Prodcut.create({ pname, pmanu, pdate, role });
+    const { name, price, description } = req.body;
+    if (!name || !price || !description) {
+      return res.json({ message: "All fields are required" });
+    }
+    const existingUser = await Product.findOne({ name });
+    if (existingUser) {
+      return res.json({ message: "Product already exists" });
+    }
+    const user = await Product.create({ name, price, description });
+    const token = createSecretToken(user._id);
     res
       .status(201)
       .json({ message: "Product insert successfully", success: true, user });
