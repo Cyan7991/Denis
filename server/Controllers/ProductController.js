@@ -2,7 +2,8 @@ const Product = require("../Models/Product");
 module.exports.insertPro = async (req, res, next) => {
   try {
     const { name, price, description } = req.body;
-    if (!name || !price || !description) {
+    console.log(req.body);
+    if (!name && !price && !description) {
       return res.json({ message: "All fields are required" });
     }
     const existingUser = await Product.findOne({ name });
